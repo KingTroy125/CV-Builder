@@ -159,7 +159,7 @@ const Index = () => {
       
       {/* Footer */}
       <footer className="py-8 px-4 text-center text-sm text-[#86868B] border-t border-gray-200 bg-white/50 backdrop-blur-sm">
-        <p>© {new Date().getFullYear()} CV Builder • Made with Lovable</p>
+        <p>© {new Date().getFullYear()} CV Builder</p>
       </footer>
     </div>
   );
