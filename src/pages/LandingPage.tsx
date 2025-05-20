@@ -31,15 +31,15 @@ function FeatureCard({ icon, title, description }: {
 }) {
   return (
     <motion.div
-      className="p-6 rounded-xl bg-card border shadow-lg"
+      className="p-6 rounded-xl bg-white border border-blue-100 shadow-lg hover:shadow-blue-100/50"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
+      <div className="h-12 w-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
         {icon}
       </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+      <h3 className="text-xl font-semibold mb-2 text-blue-900">{title}</h3>
+      <p className="text-blue-600/80">{description}</p>
     </motion.div>
   );
 }
@@ -125,9 +125,9 @@ function TestimonialCard({
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Navbar */}
-      <nav className="fixed top-6 inset-x-4 h-16 bg-background/80 backdrop-blur-lg border dark:border-slate-700/70 max-w-screen-xl mx-auto rounded-full z-50">
+      <nav className="fixed top-6 inset-x-4 h-16 bg-white/80 backdrop-blur-lg border border-blue-100 dark:border-slate-700/70 max-w-screen-xl mx-auto rounded-full z-50">
         <div className="h-full flex items-center justify-between mx-auto px-4">
           <Logo />
 
@@ -137,12 +137,15 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <Button
               variant="outline"
-              className="hidden sm:inline-flex rounded-full"
+              className="hidden sm:inline-flex rounded-full border-blue-200 text-blue-600 hover:bg-blue-50"
               asChild
             >
               <Link to="/signin">Sign In</Link>
             </Button>
-            <Button className="rounded-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70" asChild>
+            <Button 
+              className="rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg hover:shadow-blue-200/50" 
+              asChild
+            >
               <Link to="/signup">Get Started</Link>
             </Button>
 
@@ -159,7 +162,7 @@ export default function LandingPage() {
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
               <motion.div
@@ -167,21 +170,32 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
+                <Badge 
+                  variant="secondary" 
+                  className="mb-4 bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-200"
+                >
                   ✨ Your Professional Journey Starts Here
                 </Badge>
-                <h1 className="text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                <h1 className="text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
                   Create Stunning CVs That Land Dream Jobs
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8">
+                <p className="text-xl text-blue-600/80 mb-8">
                   Build professional CVs in minutes with our AI-powered builder.
                   Stand out from the crowd with beautiful templates and expert-crafted content suggestions.
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70" asChild>
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-lg hover:shadow-blue-200/50" 
+                    asChild
+                  >
                     <Link to="/signup">Get Started Free</Link>
                   </Button>
-                  <Button size="lg" variant="outline" className="border-primary/20 hover:bg-primary/5">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                  >
                     View Templates
                   </Button>
                 </div>
@@ -190,28 +204,28 @@ export default function LandingPage() {
               {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
                 <motion.div 
-                  className="flex flex-col items-center p-6 rounded-xl bg-card border shadow-lg"
+                  className="flex flex-col items-center p-6 rounded-xl bg-white border border-blue-100 shadow-lg hover:shadow-blue-100/50"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">50K+</h3>
-                  <p className="text-muted-foreground">CVs Created</p>
+                  <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">50K+</h3>
+                  <p className="text-blue-600/80">CVs Created</p>
                 </motion.div>
                 <motion.div 
-                  className="flex flex-col items-center p-6 rounded-xl bg-card border shadow-lg"
+                  className="flex flex-col items-center p-6 rounded-xl bg-white border border-blue-100 shadow-lg hover:shadow-blue-100/50"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">98%</h3>
-                  <p className="text-muted-foreground">Success Rate</p>
+                  <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">95%</h3>
+                  <p className="text-blue-600/80">Success Rate</p>
                 </motion.div>
                 <motion.div 
-                  className="flex flex-col items-center p-6 rounded-xl bg-card border shadow-lg"
+                  className="flex flex-col items-center p-6 rounded-xl bg-white border border-blue-100 shadow-lg hover:shadow-blue-100/50"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <h3 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">24/7</h3>
-                  <p className="text-muted-foreground">Support</p>
+                  <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">24/7</h3>
+                  <p className="text-blue-600/80">Support</p>
                 </motion.div>
               </div>
             </div>
@@ -219,46 +233,32 @@ export default function LandingPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-          <div className="container mx-auto px-4 relative">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Everything You Need to Succeed</h2>
-              <p className="text-xl text-muted-foreground">
-                Powerful features to help you create the perfect CV
+        <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                Everything You Need to Create a Winning CV
+              </h2>
+              <p className="text-xl text-blue-600/80">
+                Our platform provides all the tools and features you need to create a professional CV that gets you noticed.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <FeatureCard
-                icon={<Layout className="w-6 h-6" />}
-                title="Professional Templates"
-                description="Choose from dozens of ATS-friendly templates designed by career experts"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <FeatureCard
                 icon={<Sparkles className="w-6 h-6" />}
-                title="AI Content Suggestions"
-                description="Get smart suggestions for skills, achievements, and job descriptions"
+                title="AI-Powered Writing"
+                description="Get intelligent suggestions for your content and skills"
+              />
+              <FeatureCard
+                icon={<Layout className="w-6 h-6" />}
+                title="Beautiful Templates"
+                description="Choose from our collection of professionally designed templates"
               />
               <FeatureCard
                 icon={<FileText className="w-6 h-6" />}
-                title="Real-Time Preview"
-                description="See changes instantly as you build your perfect CV"
-              />
-              <FeatureCard
-                icon={<Download className="w-6 h-6" />}
-                title="Multiple Formats"
-                description="Export your CV in PDF, Word, or plain text formats"
-              />
-              <FeatureCard
-                icon={<Zap className="w-6 h-6" />}
-                title="Quick Import"
-                description="Import your LinkedIn profile or existing CV to get started faster"
-              />
-              <FeatureCard
-                icon={<CheckCircle2 className="w-6 h-6" />}
-                title="ATS Optimization"
-                description="Ensure your CV passes Applicant Tracking Systems every time"
+                title="ATS-Friendly"
+                description="Ensure your CV passes Applicant Tracking Systems"
               />
             </div>
           </div>

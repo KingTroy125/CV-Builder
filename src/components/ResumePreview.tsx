@@ -1,4 +1,3 @@
-
 import { ResumeData } from "@/types/resume";
 import ProfessionalTemplate from "./templates/ProfessionalTemplate";
 import CreativeTemplate from "./templates/CreativeTemplate";
@@ -10,6 +9,7 @@ import { File } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useRef } from "react";
 import { Card, CardContent } from "./ui/card";
+import html2pdf from 'html2pdf.js';
 
 interface ResumePreviewProps {
   data: ResumeData;
@@ -18,8 +18,8 @@ interface ResumePreviewProps {
 }
 
 const ResumePreview = ({ data, templateName, accentColor }: ResumePreviewProps) => {
-  const { toast } = useToast();
   const resumeRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const renderTemplate = () => {
     switch (templateName) {
@@ -38,67 +38,46 @@ const ResumePreview = ({ data, templateName, accentColor }: ResumePreviewProps) 
     }
   };
 
-  const handleExportPDF = () => {
-    // Create a new window for printing
-    const printWindow = window.open('', '_blank');
-    
-    if (printWindow && resumeRef.current) {
-      // Set up the print window with necessary styles for better PDF output
-      printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>${data.personal.fullName} - Resume</title>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-            body { 
-              font-family: 'Inter', system-ui, sans-serif;
-              background: white;
-              margin: 0;
-              padding: 0;
-            }
-            .print-container {
-              width: 100%;
-              max-width: 8.5in;
-              margin: 0 auto;
-              padding: 0;
-              background: white;
-              box-shadow: none;
-            }
-            @media print {
-              body { 
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-              }
-              .print-container {
-                width: 100%;
-                max-width: none;
-                box-shadow: none;
-              }
-            }
-            ${document.head.querySelector('style')?.innerHTML || ''}
-          </style>
-        </head>
-        <body>
-          <div class="print-container">
-            ${resumeRef.current.innerHTML}
-          </div>
-          <script>
-            // Automatically open print dialog
-            window.onload = function() {
-              window.print();
-              // Keep the window open so users can save as PDF
-            };
-          </script>
-        </body>
-        </html>
-      `);
+  const handleExportPDF = async () => {
+    if (!resumeRef.current) return;
 
+    // Show loading toast
+    toast({
+      title: "Preparing PDF",
+      description: "Please wait while we generate your resume...",
+    });
+
+    try {
+      const element = resumeRef.current;
+      const opt = {
+        margin: [10, 10],
+        filename: `${data.personal.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          letterRendering: true
+        },
+        jsPDF: { 
+          unit: 'mm', 
+          format: 'a4', 
+          orientation: 'portrait'
+        }
+      };
+
+      // Generate PDF
+      await html2pdf().set(opt).from(element).save();
+
+      // Show success toast
       toast({
-        title: "PDF Export Ready",
-        description: "Save as PDF in the print dialog to download your resume",
+        title: "PDF Generated Successfully",
+        description: "Your resume has been downloaded",
+      });
+    } catch (error) {
+      // Show error toast
+      toast({
+        title: "Error Generating PDF",
+        description: "Please try again later",
       });
     }
   };
@@ -106,15 +85,14 @@ const ResumePreview = ({ data, templateName, accentColor }: ResumePreviewProps) 
   return (
     <div className="resume-preview-container">
       <Card className="p-6 bg-white/50 backdrop-blur-sm animate-fade-in">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-medium text-apple-dark">Preview</h2>
+        <div className="flex justify-end items-center mb-4">
           <Button 
             onClick={handleExportPDF}
-            className="bg-apple-blue hover:bg-apple-blue-hover text-white transition-all duration-300"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-300 shadow-sm hover:shadow-blue-200/50"
             style={{ backgroundColor: accentColor }}
           >
             <File className="h-4 w-4 mr-2" />
-            Download PDF
+            Export as PDF
           </Button>
         </div>
         <CardContent className="p-0">

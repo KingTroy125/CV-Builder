@@ -1,11 +1,10 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -14,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -31,7 +30,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 221 83% 53%;
 
     --radius: 0.5rem;
 
@@ -55,7 +54,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -72,7 +71,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 224.3 76.3% 48%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -97,11 +96,11 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/90 backdrop-blur-sm border border-gray-200 shadow-sm;
+    @apply bg-white/90 backdrop-blur-sm border border-blue-100 shadow-sm;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent;
   }
   
   .hover-scale {
@@ -109,15 +108,15 @@
   }
   
   .button-primary {
-    @apply bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow;
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-blue-200/50;
   }
   
   .button-secondary {
-    @apply bg-white text-[#0071E3] border border-gray-200 font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-gray-50;
+    @apply bg-white text-blue-600 border border-blue-100 font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-blue-50;
   }
   
   .input-field {
-    @apply border border-gray-200 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#0071E3]/20 focus:border-[#0071E3] transition-all duration-200;
+    @apply border border-blue-100 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200;
   }
   
   .section-heading {
@@ -174,19 +173,29 @@
   }
   
   .gradient-bg-blue {
-    background: linear-gradient(135deg, #0071E3, #42a5f5);
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-[#0071E3] to-[#42a5f5] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent;
   }
   
   .template-card {
-    @apply bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-lg;
+    @apply bg-white rounded-xl overflow-hidden shadow-sm border border-blue-100 transition-all duration-300 hover:shadow-lg hover:shadow-blue-100/50;
   }
   
   .testimonial-card {
-    @apply bg-white p-8 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md;
+    @apply bg-white p-8 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-blue-100/50;
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .bg-gradient-overlay {
+    background: linear-gradient(to bottom, rgba(37, 99, 235, 0.05), transparent);
   }
 }
 
